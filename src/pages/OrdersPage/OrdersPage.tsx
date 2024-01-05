@@ -1,11 +1,7 @@
-import OrderList from "../../components/orders/OrderList/OrderList";
-
 function OrdersPage() {
   return (
     <>
-      <OrderList />
+      <h2>OrdersPage</h2>
     </>
   );
 }
-
-export default OrdersPage;

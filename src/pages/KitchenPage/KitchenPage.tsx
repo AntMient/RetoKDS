@@ -1,9 +1,9 @@
+import OrderList from "../../components/orders/OrderList/OrderList";
+
 function KitchenPage() {
-    return (
-      <>
-        <h1> KitchenPage </h1>
-      </>
-    );
-  }
-  
-  export default KitchenPage;
+  return (
+    <>
+      <OrderList />
+    </>
+  );
+}

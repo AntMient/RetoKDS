@@ -1,6 +1,7 @@
 import { randFood, randNumber, toCollection } from "@ngneat/falso";
 import { randAwsRequestId } from "@ngneat/falso";
 import { Order } from "./orders.service.types";
+import { generateTimestamp } from "../../utils/time";
 
 export const mockOrders = (quantity: number): Order[] => {
     const orders: Order[] = [];
@@ -24,7 +25,9 @@ export const mockOrders = (quantity: number): Order[] => {
 
 export const mockOrder = (quantity: number): Order => {
     return {
+        id: randAwsRequestId(),
         dishes: mockDishes(quantity),
+        timestamp: generateTimestamp(),
     };
 };
 
