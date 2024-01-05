@@ -1,0 +1,14 @@
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+body {
+  height: 100vh; /* fallback for Opera, IE and etc. */
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+}

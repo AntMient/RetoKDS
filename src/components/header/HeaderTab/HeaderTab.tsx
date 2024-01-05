@@ -4,7 +4,7 @@ import { NavLink, useMatch } from "react-router-dom";
 
 const Tab = styled.div<{ $isActive?: boolean }>`
   cursor: pointer;
-  background-color: ${(props) => (props.$isActive ? "#0b386c" : "#f2f2f2")};
+  background-color: ${(props) => props.$isActive ? props.theme.colors.primary : "#f2f2f2"};
   color: ${(props) => (props.$isActive ? "white" : "black")};
   width: 50%;
   max-width: 16rem;
@@ -12,7 +12,7 @@ const Tab = styled.div<{ $isActive?: boolean }>`
   padding: 0.5rem;
   user-select: none;
   &:hover {
-    background-color: #0b386c;
+    background-color: ${(props) => props.theme.colors.primary};
     color: white;
   }
 `;
