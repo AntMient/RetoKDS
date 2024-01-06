@@ -4,6 +4,8 @@ import { useFetchOrders } from "../../../services/orders/orders.service.hook";
 import OrderItem from "../OrderItem/OrderItem";
 import { bgAnimation } from "../../../utils/animations";
 import OrderListPlaceholder from "./OrderList.placeholder";
+import FilterKitchen from "../../filter/FilterKitchen/FilterKitchen";
+import { useState } from "react";
 
 const Container = styled.div<{ $isLoading?: boolean }>`
   background-size: 200% 200%;
@@ -39,9 +41,34 @@ const BarLoader = styled.div`
   animation: ${bgAnimation} 1s ease infinite;
   background-blend-mode: multiply;
 `;
+const ButtonFilter = styled.button<{ $isActive?: boolean }>`
+  cursor: pointer;
+  background-color: ${(props) =>
+    props.$isActive ? props.theme.colors.primary : "#f2f2f2"};
+  color: ${(props) => (props.$isActive ? "white" : "black")};
+  width: 50%;
+  max-width: 16rem;
+  text-align: center;
+  padding: 0.5rem;
+  user-select: none;
+  &:hover {
+    background-color: ${(props) => props.theme.colors.primary};
+    color: white;
+  }
+`;
+const ContainerFilters = styled.div`
+  background-color: white;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.2rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  width: 100%;
+`;
 
 const OrderList: React.FC<OrderListProps> = () => {
   const { data: orders, isLoading } = useFetchOrders();
+  const [showCompleted, setShowCompleted] = useState(false); // New state for the filter
   if (isLoading)
     return (
       <Container $isLoading={isLoading}>
@@ -49,16 +76,27 @@ const OrderList: React.FC<OrderListProps> = () => {
         <OrderListPlaceholder />
       </Container>
     );
+  const handleFilterClick = () => {
+    setShowCompleted(!showCompleted); // Toggle the filter
+  };
 
   return (
-    <Container $isLoading={isLoading}>
-      {orders
-        ?.sort((a, b) => (a.isPending ? -1 : 1))
-        .map((order, index) => (
-          <OrderItem order={order} key={index} />
-        ))}
-      <></>
-    </Container>
+    <>
+      <ContainerFilters>
+        <ButtonFilter onClick={handleFilterClick}>
+          {showCompleted ? "Mostrar todas" : "Mostrar completadas"}
+        </ButtonFilter>
+      </ContainerFilters>
+      <Container $isLoading={isLoading}>
+        {orders
+          ?.filter((order) => !showCompleted || order.isPending === false) // Filter the orders
+          .sort((a, b) => (a.isPending ? -1 : 1))
+          .map((order, index) => (
+            <OrderItem order={order} key={index} />
+          ))}
+        <></>
+      </Container>
+    </>
   );
 };
 

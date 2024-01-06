@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { HeaderTabProps } from "./HeaderTab.types";
 import { NavLink, useMatch } from "react-router-dom";
 import { FilterKitchenTabProps } from "./FilterKitchenTab.types";
 
-const Tab = styled.div<{ $isActive?: boolean }>`
+const Tab = styled.button<{ $isActive?: boolean }>`
   cursor: pointer;
   background-color: ${(props) =>
     props.$isActive ? props.theme.colors.primary : "#f2f2f2"};

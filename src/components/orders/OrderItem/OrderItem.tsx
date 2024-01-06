@@ -92,12 +92,12 @@ const OrderItem: React.FC<OrderItemProps> = (props) => {
     <Container>
       {isPending ? (
         <>
-          <DishId>Preparing...</DishId>
-          <Button onClick={updateOrderStatus}>complete</Button>
+          <DishId>Preparando...</DishId>
+          <Button onClick={updateOrderStatus}>Completo</Button>
         </>
       ) : (
         <TopContainer>
-          <DishId>Ready!</DishId>
+          <DishId>Completado!</DishId>
           <FaCheck />
         </TopContainer>
       )}
