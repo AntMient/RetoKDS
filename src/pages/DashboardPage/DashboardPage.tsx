@@ -59,14 +59,14 @@ function DashboardPage() {
   };
   return (
     <>
-      <h2>OrdersPage</h2>
+      <h2>Ordenar</h2>
       <DishSelector />
       <DashboardOrder reference={reference} />
       <button
         onClick={() => handleCreateOrder()}
         disabled={!hasDishes || isLoading.isLoading}
       >
-        Create Order
+        Crear Orden
       </button>
       {isLoading.isLoading && <p>{isLoading.message}</p>}
     </>

@@ -89,7 +89,7 @@ const OrderList: React.FC<OrderListProps> = () => {
       <Container $isLoading={isLoading}>
         {orders
           ?.filter((order) => !showCompleted || order.isPending === false) // Filter the orders
-          .sort((a, b) => (a.isPending ? -1 : 1))
+          .sort((a) => (a.isPending ? -1 : 1))
           .map((order, index) => (
             <OrderItem order={order} key={index} />
           ))}
