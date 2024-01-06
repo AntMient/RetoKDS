@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = () => {
           <button onClick={() => handleSignOut()}>Cerrar Sesión</button>
         </>
       ) : (
-        <h2>Por favor inicia sesión</h2>
+        <></>
       )}
     </HeaderContainer>
   );
