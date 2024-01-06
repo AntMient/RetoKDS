@@ -84,7 +84,7 @@ function LoginPage() {
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
-        <Text>Por favor ingresa tu correo</Text>
+        <Text>Ingresa con tu correo</Text>
         <UserInput
           type="email"
           value={email}
