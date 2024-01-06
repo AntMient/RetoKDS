@@ -3,19 +3,6 @@ import styled from "styled-components";
 import { FilterKitchenProps } from "./FilterKitchen.types";
 import FilterKitchenTab from "../FilterKitchenTab/FilterKitchenTab";
 
-const NavState = styled.div`
-  background-color: ${(props) => props.theme.colors.primary};
-  color: ${(props) => props.theme.colors.white};
-  border: none;
-  padding: 0.5rem 1rem;
-  font-size: 1.2rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    background-color: ${(props) => props.theme.colors.secondary};
-  }
-`;
 const ContainerFilters = styled.div`
   background-color: white;
   padding-top: 1rem;

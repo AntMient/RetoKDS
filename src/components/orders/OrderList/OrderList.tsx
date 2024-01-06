@@ -4,7 +4,6 @@ import { useFetchOrders } from "../../../services/orders/orders.service.hook";
 import OrderItem from "../OrderItem/OrderItem";
 import { bgAnimation } from "../../../utils/animations";
 import OrderListPlaceholder from "./OrderList.placeholder";
-import FilterKitchen from "../../filter/FilterKitchen/FilterKitchen";
 import { useState } from "react";
 
 const Container = styled.div<{ $isLoading?: boolean }>`

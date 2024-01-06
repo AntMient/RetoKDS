@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { NavLink, useMatch } from "react-router-dom";
 import { FilterKitchenTabProps } from "./FilterKitchenTab.types";
+import { useMatch } from "react-router-dom";
 
 const Tab = styled.button<{ $isActive?: boolean }>`
   cursor: pointer;
