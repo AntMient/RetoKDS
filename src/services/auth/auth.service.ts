@@ -9,7 +9,7 @@ export const loginWithMagicLink = async (config: LoginWithMagicLinkParams) => {
       options: {
         // set this to false if you do not want the user to be automatically signed up
         shouldCreateUser: true,
-        emailRedirectTo: "https://retokds.vercel.app/",
+        emailRedirectTo: "https://retokds.vercel.app/orders",
       },
     });
     if (response.error) {
