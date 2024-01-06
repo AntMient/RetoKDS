@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { OrderListProps } from "./OrderList.types";
-import { useFetchStores } from "../../../services/orders/orders.service.hook";
+import { useFetchOrders } from "../../../services/orders/orders.service.hook";
 import OrderItem from "../OrderItem/OrderItem";
 import { bgAnimation } from "../../../utils/animations";
 import OrderListPlaceholder from "./OrderList.placeholder";
@@ -41,9 +41,7 @@ const BarLoader = styled.div`
 `;
 
 const OrderList: React.FC<OrderListProps> = () => {
-  const { data: orders, isLoading } = useFetchStores();
-  console.log("🚀 ~ orders:", orders);
-
+  const { data: orders, isLoading } = useFetchOrders();
   if (isLoading)
     return (
       <Container $isLoading={isLoading}>
