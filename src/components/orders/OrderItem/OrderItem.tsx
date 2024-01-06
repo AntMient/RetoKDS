@@ -1,5 +1,10 @@
 import styled from "styled-components";
 import { OrderItemProps } from "./OrderItem.types";
+import {
+  useFetchOrders,
+  useUpdateOrder,
+} from "../../../services/orders/orders.service.hook";
+import { UpdateOrderPayload } from "../../../services/orders/orders.service.types";
 
 const Container = styled.header`
   background-color: #f5f5f5;
@@ -40,17 +45,30 @@ const DishQuantity = styled.h4`
 
 const OrderItem: React.FC<OrderItemProps> = (props) => {
   const { order } = props;
-  const { reference, order_dishes } = order;
+  const { reference, order_dishes, isPending } = order;
+  const { mutateAsync: updateOrder } = useUpdateOrder();
+  const { refetch } = useFetchOrders();
+
+  const updateOrderStatus = async () => {
+    const payload: UpdateOrderPayload = {
+      orderId: order.order_id,
+      partial: { isPending: false },
+    };
+    await updateOrder(payload);
+    await refetch();
+  };
 
   return (
     <Container>
+      {isPending ? <DishId>Preparing...</DishId> : <DishId>Ready!</DishId>}
+      <button onClick={updateOrderStatus}>complete</button>
       <DishId>Order #{reference.slice(0, 10)}</DishId>
-      {/* <CountdownTimer timestamp={timestamp} /> */}
+
       {order_dishes.map((dishes, index) => {
         const { dish } = dishes;
         return (
           <DishContainer key={index}>
-            <DishName>{dish.dish_id}</DishName>
+            <DishName>{dish.name}</DishName>
             <DishQuantity>x {dishes.amount}</DishQuantity>
           </DishContainer>
         );

@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = () => {
       {session ? (
         <>
           <HeaderTab to={`/orders`} text="Ordenes" />
-          <HeaderTab to={`/kitchen`} text="Cocina" />
+          <HeaderTab to={`/dashboard`} text="Dashboard" />
           <button onClick={() => handleSignOut()}>Cerrar Sesión</button>
         </>
       ) : (
