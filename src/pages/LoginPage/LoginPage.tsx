@@ -78,6 +78,7 @@ function LoginPage() {
       email,
     });
     setLoading(false);
+    setEmail("");
   };
 
   return (
@@ -88,12 +89,14 @@ function LoginPage() {
           type="email"
           value={email}
           name="email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(event) => setEmail(event.target.value)}
           placeholder="tucorreo@pagina.com"
           required
         />
 
-        <Button disabled={loading}>Entrar</Button>
+        <Button disabled={loading} type="submit">
+          Entrar
+        </Button>
 
         {/* <Link to="/register">Não tenho cadastro</Link> */}
       </Form>

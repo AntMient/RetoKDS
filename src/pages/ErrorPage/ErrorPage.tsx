@@ -1,5 +1,27 @@
 import React from "react";
 import { useRouteError, isRouteErrorResponse } from "react-router-dom";
+import styled from "styled-components";
+import HeaderTab from "../../components/header/HeaderTab/HeaderTab";
+
+const Container = styled.div`
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -5rem;
+`;
+
+const ViewError = styled.div`
+  background-image: url("src/assets/BackgroundError.svg");
+  width: 100%;
+  height: 15rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+`;
 
 const ErrorPage: React.FC = () => {
   const error = useRouteError();
@@ -17,13 +39,15 @@ const ErrorPage: React.FC = () => {
   }
 
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{errorMessage}</i>
-      </p>
-    </div>
+    <Container id="error-page">
+      <ViewError />
+      <h1>Oh no!</h1>
+      <p>Lo sentimos, ha ocurrido un error inesperado.</p>
+
+      <i>{errorMessage}</i>
+
+      <HeaderTab to={`/orders`} text="Regresar a la página" />
+    </Container>
   );
 };
 

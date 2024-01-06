@@ -52,9 +52,11 @@ const OrderList: React.FC<OrderListProps> = () => {
 
   return (
     <Container $isLoading={isLoading}>
-      {orders?.map((order, index) => (
-        <OrderItem order={order} key={index} />
-      ))}
+      {orders
+        ?.sort((a, b) => (a.isPending ? -1 : 1))
+        .map((order, index) => (
+          <OrderItem order={order} key={index} />
+        ))}
       <></>
     </Container>
   );
