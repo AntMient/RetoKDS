@@ -1,12 +1,11 @@
-import { AxiosError, AxiosResponse } from "axios";
-import axiosDefault from "../../config/axios";
+import { AxiosError } from "axios";
 import CONSTANTS from "../../config/constants";
 import { mockOrders } from "./orders.service.mock";
 import { Order } from "./orders.service.types";
+import { supabase } from "../../config/supabaseClient";
+import { PostgrestSingleResponse } from "@supabase/supabase-js";
 
 const { SHOULD_USE_MOCK } = CONSTANTS.AXIOS;
-
-const baseUrl = `/api/orders`;
 
 /**
  * Fetches a list of orders
@@ -15,13 +14,14 @@ const baseUrl = `/api/orders`;
  */
 export const fetchOrders = async (): Promise<Order[]> => {
   try {
-    if (!SHOULD_USE_MOCK) {
-      const response: AxiosResponse<Order[]> = await axiosDefault.get(baseUrl, {
-        params: {
-          size: 1000,
-        },
-      });
+    if (SHOULD_USE_MOCK) {
+      console.log("enter");
+      const response: PostgrestSingleResponse<Order[]> = await supabase
+        .from("order")
+        .select("*, order_dishes(*, dish(*))");
 
+      if (response.error) throw new Error(response.error.message);
+      console.log(response.data);
       return response.data;
     } else {
       return await new Promise((resolve) => {

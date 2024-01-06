@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { OrderItemProps } from "./OrderItem.types";
-import CountdownTimer from "../Countdown/Countdown";
 
 const Container = styled.header`
   background-color: #f5f5f5;
@@ -41,18 +40,21 @@ const DishQuantity = styled.h4`
 
 const OrderItem: React.FC<OrderItemProps> = (props) => {
   const { order } = props;
-  const { dishes, id, timestamp } = order;
+  const { reference, order_dishes } = order;
 
   return (
     <Container>
-      <DishId>Order #{id.slice(0, 10)}</DishId>
-      <CountdownTimer timestamp={timestamp} />
-      {dishes.map((dish, index) => (
-        <DishContainer key={index}>
-          <DishName>{dish.name}</DishName>
-          <DishQuantity>x {dish.quantity}</DishQuantity>
-        </DishContainer>
-      ))}
+      <DishId>Order #{reference.slice(0, 10)}</DishId>
+      {/* <CountdownTimer timestamp={timestamp} /> */}
+      {order_dishes.map((dishes, index) => {
+        const { dish } = dishes;
+        return (
+          <DishContainer key={index}>
+            <DishName>{dish.dish_id}</DishName>
+            <DishQuantity>x {dishes.amount}</DishQuantity>
+          </DishContainer>
+        );
+      })}
     </Container>
   );
 };

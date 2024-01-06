@@ -3,6 +3,7 @@ import App from "../pages/App";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import OrdersPage from "../pages/OrdersPage/OrdersPage";
 import KitchenPage from "../pages/KitchenPage/KitchenPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "kitchen",
         element: <KitchenPage />,
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
       },
     ],
   },

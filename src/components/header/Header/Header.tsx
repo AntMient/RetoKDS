@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { HeaderProps } from "./Header.types";
 import HeaderTab from "../HeaderTab/HeaderTab";
+import { useAppSelector } from "../../../config/store.config";
+import { useSignOut } from "../../../services/auth/auth.service.hook";
 
 const HeaderContainer = styled.header`
   background-color: white;
@@ -11,10 +13,24 @@ const HeaderContainer = styled.header`
 `;
 
 const Header: React.FC<HeaderProps> = () => {
+  const { mutateAsync: signOut } = useSignOut();
+
+  const session = useAppSelector((state) => state.authReducer.session);
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
   return (
     <HeaderContainer>
-      <HeaderTab to={`/orders`} text="Ordenes" />
-      <HeaderTab to={`/kitchen`} text="Cocina" />
+      {session ? (
+        <>
+          <HeaderTab to={`/orders`} text="Ordenes" />
+          <HeaderTab to={`/kitchen`} text="Cocina" />
+          <button onClick={() => handleSignOut()}>Cerrar Sesión</button>
+        </>
+      ) : (
+        <h2>Por favor inicia sesión</h2>
+      )}
     </HeaderContainer>
   );
 };
