@@ -2,6 +2,7 @@ import React from "react";
 import { useRouteError, isRouteErrorResponse } from "react-router-dom";
 import styled from "styled-components";
 import HeaderTab from "../../components/header/HeaderTab/HeaderTab";
+import BackgroundError from "../../assets/BackgroundError.svg";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -12,15 +13,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: -5rem;
-`;
-
-const ViewError = styled.div`
-  background-image: url("src/assets/BackgroundError.svg");
-  width: 100%;
-  height: 15rem;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;
 `;
 
 const ErrorPage: React.FC = () => {
@@ -40,7 +32,7 @@ const ErrorPage: React.FC = () => {
 
   return (
     <Container id="error-page">
-      <ViewError />
+      <img src={BackgroundError} alt="Your SVG" />
       <h1>Oh no!</h1>
       <p>Lo sentimos, ha ocurrido un error inesperado.</p>
 

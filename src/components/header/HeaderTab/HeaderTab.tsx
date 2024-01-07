@@ -2,9 +2,12 @@ import styled from "styled-components";
 import { HeaderTabProps } from "./HeaderTab.types";
 import { NavLink, useMatch } from "react-router-dom";
 
-const Tab = styled.div<{ $isActive?: boolean }>`
+const NavbarLink = styled(NavLink)<{ $isActive?: boolean }>`
+  text-decoration: none;
+  color: inherit;
   cursor: pointer;
-  background-color: ${(props) => props.$isActive ? props.theme.colors.primary : "#f2f2f2"};
+  background-color: ${(props) =>
+    props.$isActive ? props.theme.colors.primary : "#f2f2f2"};
   color: ${(props) => (props.$isActive ? "white" : "black")};
   width: 50%;
   max-width: 16rem;
@@ -17,20 +20,15 @@ const Tab = styled.div<{ $isActive?: boolean }>`
   }
 `;
 
-const NavbarLink = styled(NavLink)`
-  text-decoration: none;
-  color: inherit;
-`;
-
 const HeaderTab: React.FC<HeaderTabProps> = (props) => {
   const { to, text } = props;
   const path = useMatch(to)?.pathname;
   const isActive = path?.includes(to);
   return (
     <>
-      <Tab $isActive={isActive}>
-        <NavbarLink to={to}>{text}</NavbarLink>
-      </Tab>
+      <NavbarLink $isActive={isActive} to={to}>
+        {text}
+      </NavbarLink>
     </>
   );
 };
